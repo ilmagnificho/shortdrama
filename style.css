@@ -1,90 +1,111 @@
-/* 전체 스타일 */
-body {
-    background-color: #000; /* 배경색을 검정으로 설정 */
-    color: #fff; /* 텍스트를 흰색으로 */
-    font-family: Arial, sans-serif;
+/* 전체 화면 스타일 */
+body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
 }
 
-/* 메인 컨테이너 */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* 비디오 플레이어 스타일 */
-.video-player {
+.video-container {
     position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
-}
-
-.video-player iframe {
-    width: 100%;
-    height: 340px; /* YouTube 비디오의 비율을 유지 */
-    border: none;
-}
-
-.episode-title {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1.2rem;
-}
-
-/* 에피소드 목록 스타일 */
-.episode-list {
-    text-align: center;
-}
-
-.episode-list h2 {
-    color: #00ff99; /* 포인트 색상 적용 */
-    margin-bottom: 10px;
-}
-
-/* 버튼 스타일 */
-.episode-buttons {
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-wrap: wrap; /* 버튼을 나란히 정렬 */
     justify-content: center;
-    gap: 10px; /* 버튼 간격 */
+    align-items: center;
+}
+
+/* 비디오가 화면을 꽉 채우도록 설정 */
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 플로팅 버튼 스타일 */
+.floating-button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #00ff99;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50%;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.floating-button:hover {
+    background-color: #ff0066;
+    color: #fff;
+}
+
+/* 회차 선택 메뉴 오버레이 */
+.episode-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.episode-content {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* 에피소드 버튼 스타일 */
+.episode-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개의 버튼 */
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .episode-buttons button {
-    background-color: #222; /* 버튼 배경색 */
-    color: #00ff99; /* 버튼 텍스트 색 */
-    border: 2px solid #00ff99; /* 버튼 테두리 색 */
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .episode-buttons button:hover {
-    background-color: #00ff99; /* 호버 시 배경색 변경 */
-    color: #000; /* 호버 시 텍스트 색 변경 */
+    background-color: #00ff99;
+    color: #000;
 }
 
-/* 기존 에피소드 링크 스타일 (삭제 가능) */
-.episode-list ul {
-    display: none; /* 기존 목록 스타일 숨김 */
-}
-
-/* 모바일 최적화 */
+/* 모바일에서 버튼이 더 잘 보이도록 조정 */
 @media (max-width: 768px) {
-    .video-player iframe {
-        height: 280px; /* 모바일에서 동영상 높이 조정 */
+    .episode-buttons {
+        grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개의 버튼 */
     }
 
-    .episode-buttons button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+    .floating-button {
+        padding: 12px 15px;
+        font-size: 14px;
     }
 }
