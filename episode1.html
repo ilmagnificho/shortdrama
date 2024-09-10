@@ -56,7 +56,7 @@
 
         episodeButtons.forEach(button => {
             const episodeNumber = button.innerText;
-            if (currentPage.includes(episode${episodeNumber}.html)) {
+            if (currentPage.includes(`episode${episodeNumber}.html`)) {
                 button.classList.add('current-episode');
             }
         });
