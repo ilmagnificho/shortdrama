@@ -20,8 +20,10 @@
 <body>
 
     <div class="video-container">
-        <!-- 커스텀 YouTube Player -->
-        <div id="hfqup-YNCk4"></div>
+        <!-- 비디오 화면 -->
+        <iframe src="https://www.youtube.com/embed/hfqup-YNCk4" 
+                frameborder="0" 
+                allowfullscreen></iframe>
 
         <!-- 플로팅 버튼 -->
         <button class="floating-button" id="episode-btn">List</button>
@@ -32,7 +34,7 @@
                 <span class="close-btn" id="close-btn">&times;</span>
                 <h3>회차 선택</h3>
                 <div class="episode-buttons">
-                    <button onclick="window.location.href='episode1.html'">1</button>
+                    <button class="current-episode" onclick="window.location.href='episode1.html'">1</button>
                     <button onclick="window.location.href='episode2.html'">2</button>
                     <button onclick="window.location.href='episode3.html'">3</button>
                     <button onclick="window.location.href='episode4.html'">4</button>
@@ -47,36 +49,7 @@
         </div>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                videoId: 'hfqup-YNCk4',  // 메인 페이지에서 표시될 YouTube 동영상 ID
-                playerVars: {
-                    'controls': 0,   // 플레이어 기본 컨트롤 숨김
-                    'autoplay': 1,   // 자동 재생
-                    'rel': 0,        // 관련 동영상 표시 안함
-                    'modestbranding': 1, // 최소한의 YouTube 로고만 표시
-                    'fs': 0,         // 전체화면 버튼 숨김
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.ENDED) {
-                player.playVideo();  // 동영상 끝나면 다시 재생
-            }
-        }
-
         // 회차 선택 버튼 이벤트
         document.getElementById('episode-btn').addEventListener('click', function() {
             document.getElementById('episode-menu').style.display = 'flex';
@@ -85,6 +58,17 @@
         // 닫기 버튼 이벤트
         document.getElementById('close-btn').addEventListener('click', function() {
             document.getElementById('episode-menu').style.display = 'none';
+        });
+
+        // 현재 시청 중인 페이지를 표시
+        const currentPage = window.location.href;
+        const episodeButtons = document.querySelectorAll('.episode-buttons button');
+
+        episodeButtons.forEach(button => {
+            const episodeNumber = button.innerText;
+            if (currentPage.includes(`episode${episodeNumber}.html`)) {
+                button.classList.add('current-episode');
+            }
         });
     </script>
 
