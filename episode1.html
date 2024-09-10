@@ -5,27 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Episode 1: 예고편 두둥</title>
 
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* 비디오 크기를 고정하여 광고 시청 후에도 비디오 크기가 유지되도록 설정 */
-        #episode-video {
-            width: 95%;
-            height: 95%;
-        }
+    <!-- YouTube IFrame API 추가 -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 
-        #episode-video iframe {
-            width: 95%;
-            height: 95%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="video-container">
         <!-- 비디오 화면 -->
-        <iframe src="https://www.youtube.com/embed/hfqup-YNCk4" 
-                frameborder="0" 
-                allowfullscreen></iframe>
+        <iframe id="video" src="https://www.youtube.com/embed/hfqup-YNCk4" frameborder="0" allowfullscreen></iframe>
 
         <!-- 플로팅 버튼 -->
         <button class="floating-button" id="episode-btn">List</button>
@@ -51,27 +40,36 @@
         </div>
     </div>
 
+    <!-- YouTube API와 에피소드 전환 로직 -->
     <script>
-        // 회차 선택 버튼 이벤트
-        document.getElementById('episode-btn').addEventListener('click', function() {
-            document.getElementById('episode-menu').style.display = 'flex';
-        });
+        // 현재 URL에서 에피소드 번호 추출
+        var currentUrl = window.location.href;
+        var currentEpisode = parseInt(currentUrl.match(/episode(\d+)/)[1] || 1); // episode1.html에선 1로 가정
 
-        // 닫기 버튼 이벤트
-        document.getElementById('close-btn').addEventListener('click', function() {
-            document.getElementById('episode-menu').style.display = 'none';
-        });
+        function onYouTubeIframeAPIReady() {
+            var player = new YT.Player('video', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
-        // 현재 시청 중인 페이지를 표시
-        const currentPage = window.location.href;
-        const episodeButtons = document.querySelectorAll('.episode-buttons button');
-
-        episodeButtons.forEach(button => {
-            const episodeNumber = button.innerText;
-            if (currentPage.includes(`episode${episodeNumber}.html`)) {
-                button.classList.add('current-episode');
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                var nextEpisode = currentEpisode + 1;
+                if (nextEpisode <= 10) { // 마지막 에피소드 이후로 넘어가지 않도록 설정
+                    window.location.href = 'episode' + nextEpisode + '.html';
+                } else {
+                    alert('모든 에피소드를 시청하셨습니다.');
+                }
             }
-        });
+        }
+
+        // YouTube API 로드
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
 
 </body>
