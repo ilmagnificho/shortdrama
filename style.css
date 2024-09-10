@@ -1,106 +1,80 @@
-/* 전체 화면 설정 */
+/* 전체 스타일 */
 body {
+    background-color: #000; /* 배경색을 검정으로 설정 */
+    color: #fff; /* 텍스트를 흰색으로 */
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-    background-color: #f4f4f9;
     margin: 0;
+    padding: 0;
 }
 
-h1 {
-    color: #4CAF50;
+/* 메인 컨테이너 */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 비디오 플레이어 스타일 */
+.video-player {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.video-player iframe {
+    width: 100%;
+    height: 340px; /* YouTube 비디오의 비율을 유지 */
+    border: none;
+}
+
+.episode-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+/* 에피소드 목록 스타일 */
+.episode-list {
+    text-align: center;
+}
+
+.episode-list h2 {
+    color: #00ff99; /* 포인트 색상 적용 */
     margin-bottom: 10px;
 }
 
-p {
-    font-size: 18px;
+.episode-list ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-/* 비디오 컨테이너 설정 */
-.video-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.episode-list ul li {
+    margin: 10px 0;
 }
 
-/* 반응형 비디오 설정 - 기본 (PC, 노트북) */
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* 큰 화면에서는 최대 800px까지 */
-    height: 0;
-    padding-bottom: 177.78%; /* 9:16 비율 유지 */
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* 버튼 스타일 */
-a {
+.episode-list ul li a {
+    color: #00ff99;
     text-decoration: none;
-    color: #3498db;
-    font-size: 18px;
-    margin-top: 20px;
-    display: inline-block;
+    font-size: 1.1rem;
 }
 
-a:hover {
-    color: #2c3e50;
+.episode-list ul li a:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
-/* 미디어 쿼리 */
-
-/* 큰 화면 (데스크탑, 노트북) */
-@media (min-width: 1200px) {
-    .video-wrapper {
-        max-width: 1000px;
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+    .video-player iframe {
+        height: 280px;
     }
 
-    h1 {
-        font-size: 32px;
-    }
-
-    p {
-        font-size: 20px;
-    }
-}
-
-/* 태블릿 (화면 너비 768px ~ 1199px) */
-@media (max-width: 1199px) and (min-width: 768px) {
-    .video-wrapper {
-        max-width: 600px;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    p {
-        font-size: 18px;
-    }
-}
-
-/* 작은 화면 (스마트폰) */
-@media (max-width: 767px) {
-    .video-wrapper {
-        max-width: 100%; /* 스마트폰에서는 화면을 꽉 채우도록 설정 */
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    a {
-        font-size: 16px;
+    .episode-list ul li a {
+        font-size: 1rem;
     }
 }
