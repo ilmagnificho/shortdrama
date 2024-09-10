@@ -39,13 +39,25 @@
                     <button onclick="window.location.href='episode3.html'">3</button>
                     <button onclick="window.location.href='episode4.html'">4</button>
                     <button onclick="window.location.href='episode5.html'">5</button>
-                    <button onclick="window.location.href='episode6.html'">6</button>
-                    <button onclick="window.location.href='episode7.html'">7</button>
-                    <button onclick="window.location.href='episode8.html'">8</button>
-                    <button onclick="window.location.href='episode9.html'">9</button>
-                    <button onclick="window.location.href='episode10.html'">10</button>
+
+                    <!-- Episode 6~10은 광고 후 시청 가능 -->
+                    <button onclick="showAdPrompt('episode6.html')">6</button>
+                    <button onclick="showAdPrompt('episode7.html')">7</button>
+                    <button onclick="showAdPrompt('episode8.html')">8</button>
+                    <button onclick="showAdPrompt('episode9.html')">9</button>
+                    <button onclick="showAdPrompt('episode10.html')">10</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- 광고 안내 모달 -->
+    <div id="ad-modal" class="ad-modal">
+        <div class="ad-modal-content">
+            <span class="close-ad-btn" id="close-ad-btn">&times;</span>
+            <p>광고 후 시청 가능합니다. 광고를 시청하시겠습니까?</p>
+            <button id="yes-ad">예</button>
+            <button id="no-ad">아니오</button>
         </div>
     </div>
 
@@ -60,15 +72,35 @@
             document.getElementById('episode-menu').style.display = 'none';
         });
 
-        // 현재 시청 중인 페이지를 표시
-        const currentPage = window.location.href;
-        const episodeButtons = document.querySelectorAll('.episode-buttons button');
+        // 광고 안내 모달 열기
+        function showAdPrompt(episodeUrl) {
+            const modal = document.getElementById('ad-modal');
+            modal.style.display = 'block';
 
-        episodeButtons.forEach(button => {
-            const episodeNumber = button.innerText;
-            if (currentPage.includes(`episode${episodeNumber}.html`)) {
-                button.classList.add('current-episode');
-            }
+            // 광고 시청 여부 처리
+            document.getElementById('yes-ad').onclick = function() {
+                modal.style.display = 'none';
+                playAdAndRedirect(episodeUrl);  // 광고 재생 후 에피소드로 이동
+            };
+
+            document.getElementById('no-ad').onclick = function() {
+                modal.style.display = 'none';
+                alert('광고를 시청해야 해당 에피소드를 볼 수 있습니다.');
+            };
+        }
+
+        // 광고 재생 후 에피소드로 이동
+        function playAdAndRedirect(episodeUrl) {
+            // 광고 재생 (이 부분에 실제 광고 재생 코드를 추가)
+            alert('광고가 재생됩니다...');  // 광고 대체 (여기에 실제 광고를 추가)
+
+            // 광고가 끝난 후 에피소드로 이동
+            window.location.href = episodeUrl;
+        }
+
+        // 광고 모달 닫기 버튼
+        document.getElementById('close-ad-btn').addEventListener('click', function() {
+            document.getElementById('ad-modal').style.display = 'none';
         });
     </script>
 
