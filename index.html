@@ -19,32 +19,47 @@
 </head>
 <body>
 
-    <div class="main-container">
-        <!-- 동영상 재생 화면 -->
-        <div class="video-player">
-            <iframe src="https://www.youtube.com/embed/hfqup-YNCk4" 
-                    frameborder="0" 
-                    allowfullscreen></iframe>
-            <div class="episode-title">나는 너, 너는 나</div>
-        </div>
+    <div class="video-container">
+        <!-- 비디오 화면 -->
+        <iframe src="https://www.youtube.com/embed/hfqup-YNCk4" 
+                frameborder="0" 
+                allowfullscreen></iframe>
 
-        <!-- 에피소드 목록 버튼형 -->
-        <div class="episode-list">
-            <h2>회차 선택</h2>
-            <div class="episode-buttons">
-                <button onclick="window.location.href='episode1.html'">Ep1</button>
-                <button onclick="window.location.href='episode2.html'">Ep2</button>
-                <button onclick="window.location.href='episode3.html'">Ep3</button>
-                <button onclick="window.location.href='episode4.html'">Ep4</button>
-                <button onclick="window.location.href='episode5.html'">Ep5</button>
-                <button onclick="window.location.href='episode6.html'">Ep6</button>
-                <button onclick="window.location.href='episode7.html'">Ep7</button>
-                <button onclick="window.location.href='episode8.html'">Ep8</button>
-                <button onclick="window.location.href='episode9.html'">Ep9</button>
-                <button onclick="window.location.href='episode10.html'">Ep10</button>
+        <!-- 플로팅 버튼 -->
+        <button class="floating-button" id="episode-btn">List</button>
+
+        <!-- 회차 선택 메뉴 (오버레이) -->
+        <div class="episode-overlay" id="episode-menu">
+            <div class="episode-content">
+                <span class="close-btn" id="close-btn">&times;</span>
+                <h3>회차 선택</h3>
+                <div class="episode-buttons">
+                    <button onclick="window.location.href='episode1.html'">1</button>
+                    <button onclick="window.location.href='episode2.html'">2</button>
+                    <button onclick="window.location.href='episode3.html'">3</button>
+                    <button onclick="window.location.href='episode4.html'">4</button>
+                    <button onclick="window.location.href='episode5.html'">5</button>
+                    <button onclick="window.location.href='episode6.html'">6</button>
+                    <button onclick="window.location.href='episode7.html'">7</button>
+                    <button onclick="window.location.href='episode8.html'">8</button>
+                    <button onclick="window.location.href='episode9.html'">9</button>
+                    <button onclick="window.location.href='episode10.html'">10</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // 회차 선택 버튼 이벤트
+        document.getElementById('episode-btn').addEventListener('click', function() {
+            document.getElementById('episode-menu').style.display = 'flex';
+        });
+
+        // 닫기 버튼 이벤트
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('episode-menu').style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>
