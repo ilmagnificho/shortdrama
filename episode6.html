@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Episode 1: The Beginning</title>
+    <title>Episode 6: 서브웨이 알바</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Episode 6: 6화는 더 감사</h1>
-    <p>This is the first episode of the short-form drama series.</p>
 
-    <!-- YouTube 동영상 임베드 예시 -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/qll4P2CdCno" 
+                frameborder="0" 
+                allowfullscreen></iframe>
 
-    <!-- Vimeo 동영상 임베드 예시 -->
-    <!-- <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+        <button class="floating-button" id="episode-btn">List</button>
 
-    <a href="index.html">Back to Episode List</a>
+        <div class="episode-overlay" id="episode-menu">
+            <div class="episode-content">
+                <span class="close-btn" id="close-btn">&times;</span>
+                <h3>회차 선택</h3>
+                <div class="episode-buttons">
+                    <button onclick="window.location.href='episode1.html'">1</button>
+                    <button onclick="window.location.href='episode2.html'">2</button>
+                    <button onclick="window.location.href='episode3.html'">3</button>
+                    <button onclick="window.location.href='episode4.html'">4</button>
+                    <button onclick="window.location.href='episode5.html'">5</button>
+                    <button class="current-episode" onclick="window.location.href='episode6.html'">6</button>
+                    <button onclick="window.location.href='episode7.html'">7</button>
+                    <button onclick="window.location.href='episode8.html'">8</button>
+                    <button onclick="window.location.href='episode9.html'">9</button>
+                    <button onclick="window.location.href='episode10.html'">10</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('episode-btn').addEventListener('click', function() {
+            document.getElementById('episode-menu').style.display = 'flex';
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('episode-menu').style.display = 'none';
+        });
+
+        const currentPage = window.location.href;
+        const episodeButtons = document.querySelectorAll('.episode-buttons button');
+
+        episodeButtons.forEach(button => {
+            const episodeNumber = button.innerText;
+            if (currentPage.includes(`episode${episodeNumber}.html`)) {
+                button.classList.add('current-episode');
+            }
+        });
+    </script>
+
 </body>
 </html>
