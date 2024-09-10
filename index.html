@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short-form Drama Series</title>
+    <title>ShortCola TV</title>
 
     <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
@@ -18,41 +18,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>My Short-form Drama Series</h1>
-    <p>Select an episode to watch:</p>
 
-    <div class="episode-list">
-        <!-- 각 에피소드를 클릭하면 해당 에피소드 페이지로 이동 -->
-        <div class="episode">
-            <a href="episode1.html">Episode 1: 1화입니다</a>
+    <div class="main-container">
+        <!-- 동영상 재생 화면 -->
+        <div class="video-player">
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                    frameborder="0" 
+                    allowfullscreen></iframe>
+            <div class="episode-title">나는 너, 너는 나_에피소드 0</div>
         </div>
-        <div class="episode">
-            <a href="episode2.html">Episode 2: 2화입니다</a>
-        </div>
-        <div class="episode">
-            <a href="episode3.html">Episode 3: 3화입니다</a>
-        </div>
-        <div class="episode">
-            <a href="episode4.html">Episode 4: 4화입니다</a>
-        </div>
-        <div class="episode">
-            <a href="episode5.html">Episode 5: 5화까지 감사</a>
-        </div>
-        <div class="episode">
-            <a href="episode6.html">Episode 6: 6화는 더 감사</a>
-        </div>
-        <div class="episode">
-            <a href="episode7.html">Episode 7: 7화 정말 찐이군요</a>
-        </div>
-        <div class="episode">
-            <a href="episode8.html">Episode 8: 8화 당신은 팬이에요</a>
-        </div>
-        <div class="episode">
-            <a href="episode9.html">Episode 9: 9화 너무 감동이에요ㅠ</a>
-        </div>
-        <div class="episode">
-            <a href="episode10.html">Episode 10: 10화 마지막이 궁금하면 500원</a>
+
+        <!-- 에피소드 목록 -->
+        <div class="episode-list">
+            <h2>회차 선택</h2>
+            <ul>
+                <li><a href="episode1.html">에피소드 1</a></li>
+                <li><a href="episode2.html">에피소드 2</a></li>
+                <li><a href="episode3.html">에피소드 3</a></li>
+                <li><a href="episode3.html">에피소드 4</a></li>
+                <li><a href="episode3.html">에피소드 5</a></li>
+                <li><a href="episode3.html">에피소드 6</a></li>
+                <li><a href="episode3.html">에피소드 7</a></li>
+                <li><a href="episode3.html">에피소드 8</a></li>
+                <li><a href="episode3.html">에피소드 9</a></li>
+                <li><a href="episode3.html">에피소드 10</a></li>
+                <!-- 더 많은 에피소드 추가 -->
+            </ul>
         </div>
     </div>
+
 </body>
 </html>
