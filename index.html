@@ -58,7 +58,7 @@
             player = new YT.Player('player', {
                 videoId: 'hfqup-YNCk4', // YouTube 동영상 ID
                 playerVars: {
-                    'controls': 0,    // 플레이어 컨트롤 숨기기
+                    'controls': 1,    // 플레이어 컨트롤 숨기기
                     'autoplay': 1,    // 자동 재생
                     'rel': 0,         // 관련 동영상 표시 안함
                     'modestbranding': 1,  // 최소한의 YouTube 로고만 표시
@@ -87,7 +87,8 @@
         // 다음 에피소드 URL 결정
         function getNextEpisodeUrl() {
             const currentUrl = window.location.href;
-
+            
+            if (currentUrl.includes('index.html')) return 'episode1.html';
             if (currentUrl.includes('episode1.html')) return 'episode2.html';
             if (currentUrl.includes('episode2.html')) return 'episode3.html';
             if (currentUrl.includes('episode3.html')) return 'episode4.html';
